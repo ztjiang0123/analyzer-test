@@ -1,11 +1,10 @@
-"""Invoice generation module."""
+"""Invoice generation module (compatibility shim).
 
+This module previously carried its own copy of the invoice-building logic.
+It now re-exports the canonical implementation from :mod:`invoices` so the
+behavior lives in exactly one place.
+"""
 
-def total(items):
-    """Compute the total price of a list of items."""
-    return sum(i.price for i in items)
+from invoices import build_invoice, total
 
-
-def build_invoice(items, customer):
-    amount = sum(i.price for i in items)
-    return {"customer": customer, "amount": amount}
+__all__ = ["build_invoice", "total"]
