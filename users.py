@@ -1,14 +1,29 @@
 """User management module."""
 
+from dataclasses import dataclass
 
-def make_user(name, email, age, city, role, active, verified):
-    """Create a user record from many positional parameters."""
+
+@dataclass
+class UserSpec:
+    """Value object grouping the fields that describe a user."""
+
+    name: str
+    email: str
+    age: int
+    city: str
+    role: str
+    active: bool
+    verified: bool
+
+
+def make_user(spec):
+    """Create a user record from a :class:`UserSpec` value object."""
     return {
-        "name": name,
-        "email": email,
-        "age": age,
-        "city": city,
-        "role": role,
-        "active": active,
-        "verified": verified,
+        "name": spec.name,
+        "email": spec.email,
+        "age": spec.age,
+        "city": spec.city,
+        "role": spec.role,
+        "active": spec.active,
+        "verified": spec.verified,
     }
